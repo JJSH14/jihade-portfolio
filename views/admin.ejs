@@ -6,6 +6,80 @@
     <p>You need the correct secret number to access this page.</p>
   </div>
 <% } else { %>
+  <!-- Digital ID Card -->
+  <div class="id-card-container">
+    <div class="id-card">
+      <!-- Digital Watermark Elements -->
+      <div class="watermark-eagle"></div>
+      <div class="watermark-stamp"></div>
+      <div class="security-pattern"></div>
+      <div class="barcode-watermark"></div>
+      <div class="micro-text"></div>
+      
+      <!-- ID Number Stamp -->
+      <div class="id-number-stamp">
+        <span>420******</span>
+      </div>
+      
+      <div class="id-card-header">
+        <div class="flag">
+          <!-- Palestinian flag -->
+          <img src="/pictuers/palestine-flag.png" alt="Palestinian Flag" class="flag-img">
+        </div>
+        <div class="id-title">
+          <h2>Identity Card / بطاقة الهوية</h2>
+          <h1>State of Palestine دولة فلسطين</h1>
+        </div>
+        <div class="emblem">
+          <!-- Palestinian emblem -->
+          <img src="/pictuers/palestine-emblem.png" alt="Palestinian Emblem" class="emblem-img">
+        </div>
+      </div>
+      
+      <div class="id-card-body">
+        <div class="photo-section">
+          <!-- Your photo - no borders -->
+          <img src="/pictuers/id.png" alt="ID Photo" class="photo">
+          <div class="origin">
+            <span>Origin / الأصل</span>
+            <p>Palestinian from Nablus / فلسطيني من نابلس</p>
+          </div>
+        </div>
+        
+        <div class="details-section">
+          <div class="nationality">
+            <h3>فلسطيني</h3>
+            <h3>Palestinian</h3>
+          </div>
+          
+          <div class="name-row">
+            <div class="surname">
+              <span>Surname / اسم العائلة</span>
+              <h3>اشتيه</h3>
+              <h3>ISHTAYEH</h3>
+            </div>
+            <div class="name">
+              <span>Name / الاسم</span>
+              <h3>جهاد</h3>
+              <h3>JIHAD</h3>
+            </div>
+          </div>
+          
+          <div class="personal-row">
+            <div class="birth">
+              <span>Date of Birth / تاريخ الميلاد</span>
+              <h3>30 JAN 2005</h3>
+            </div>
+            <div class="gender">
+              <span>Sex / الجنس</span>
+              <h3>ذكر</h3>
+              <h3>Male</h3>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
   <div class="admin-dashboard">
     <h1>Project Management</h1>
     <a href="/projects/new" class="btn">Add New Project</a>
