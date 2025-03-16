@@ -1,0 +1,32 @@
+<!-- research-form.ejs -->
+<%- include('partials/header') %>
+<div class="form-page">
+  <div class="form-container">
+    <h1><%= title %></h1>
+    <form action="/myresearch" method="POST" enctype="multipart/form-data" class="research-form">
+      <div class="form-group">
+        <label>Research Title:</label>
+        <input type="text" name="title" required class="form-input">
+      </div>
+      
+      <div class="form-group">
+        <label>Description:</label>
+        <textarea name="description" class="form-input"></textarea>
+      </div>
+      
+      <div class="form-group">
+        <label>Upload Research PDF:</label>
+        <input type="file" name="researchPdf" required class="form-input" accept=".pdf">
+      </div>
+      
+      <div class="form-group">
+        <label>Custom Thumbnail Image (optional):</label>
+        <input type="file" name="customThumbnail" class="form-input" accept="image/*">
+        <small class="form-info">If not provided, the system will generate a thumbnail from the first page of your PDF.</small>
+      </div>
+      
+      <button type="submit" class="btn-submit">Save Research</button>
+    </form>
+  </div>
+</div>
+<%- include('partials/footer') %>

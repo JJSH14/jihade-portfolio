@@ -1,0 +1,32 @@
+<%- include('partials/header') %>
+
+<% if (!secret || secret !== '196748') { %>
+  <div class="admin-lock">
+    <h1>Access Denied</h1>
+    <p>You need the correct secret number to access this page.</p>
+  </div>
+<% } else { %>
+  <div class="admin-dashboard">
+    <h1>Project Management</h1>
+    <a href="/projects/new" class="btn">Add New Project</a>
+    
+    <!-- Add New Research Button -->
+    <a href="/myresearch/new" class="btn">Add New Research</a>
+
+    <div class="project-list">
+      <% projects.forEach(project => { %>
+        <div class="project-item">
+          <h3><%= project.title %></h3>
+          <div class="actions">
+            <a href="/projects/edit/<%= project._id %>" class="btn-edit">Edit</a>
+            <form action="/projects/delete/<%= project._id %>" method="POST">
+              <button type="submit" class="btn-delete">Delete</button>
+            </form>
+          </div>
+        </div>
+      <% }) %>
+    </div>
+  </div>
+<% } %>
+
+<%- include('partials/footer') %>

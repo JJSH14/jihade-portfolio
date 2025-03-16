@@ -1,0 +1,49 @@
+<%- include('partials/header') %>
+<div class="form-page">
+  <div class="form-container">
+    <h1><%= title %></h1>
+    <form action="/projects" method="POST" enctype="multipart/form-data" class="project-form">
+      <div class="form-group">
+        <label>Project Title:</label>
+        <input type="text" name="title" required class="form-input">
+      </div>
+      
+      <div class="form-group">
+        <label>Description:</label>
+        <textarea name="description" required class="form-input"></textarea>
+      </div>
+      
+      <div class="form-group">
+        <label>Technologies (comma separated):</label>
+        <input type="text" name="technologies" required class="form-input">
+      </div>
+      
+      <div class="form-group">
+        <label>Project URL:</label>
+        <input type="url" name="projectUrl" class="form-input">
+      </div>
+      
+      <div class="form-group">
+        <label>GitHub URL:</label>
+        <input type="url" name="githubUrl" class="form-input">
+      </div>
+      
+      <div class="form-group">
+        <label>Video:</label>
+        <div class="video-input-options">
+          <div class="upload-option">
+            <input type="file" name="video" accept="video/*" class="form-input">
+            <small>Upload a video file from your device</small>
+          </div>
+          <div class="url-option">
+            <input type="url" name="videoUrl" class="form-input" placeholder="Or enter a video URL">
+            <small>Provide a link to a hosted video (YouTube, Vimeo, etc.)</small>
+          </div>
+        </div>
+      </div>
+      
+      <button type="submit" class="btn-submit">Save Project</button>
+    </form>
+  </div>
+</div>
+<%- include('partials/footer') %>

@@ -1,0 +1,43 @@
+
+<%- include('partials/header') %>
+<section class="projects-page">
+  <div class="container">
+    <h1>My Projects</h1>
+    <div class="projects-grid">
+      <% projects.forEach(project => { %>
+        <div class="project-card">
+          <h3><%= project.title %></h3>
+          <p><%= project.description %></p>
+          <% if (project.videoUrl) { %>
+            <div class="video-container">
+              <% if (project.videoUrl.startsWith('http')) { %>
+                <!-- External video URL -->
+                <iframe src="<%= project.videoUrl %>" frameborder="0" allowfullscreen class="project-video"></iframe>
+              <% } else { %>
+                <!-- Locally uploaded video -->
+                <video controls class="project-video">
+                  <source src="/<%= project.videoUrl %>" type="video/mp4">
+                  Your browser does not support the video tag.
+                </video>
+              <% } %>
+            </div>
+          <% } %>
+          <div class="project-links">
+            <% if (project.githubUrl) { %>
+              <a href="<%= project.githubUrl %>" target="_blank" class="btn-link">GitHub</a>
+            <% } %>
+            <% if (project.projectUrl) { %>
+              <a href="<%= project.projectUrl %>" target="_blank" class="btn-link">Live Demo</a>
+            <% } %>
+          </div>
+        </div>
+      <% }) %>
+    </div>
+    <!-- <div class="add-research-button">
+      <a href="/projects/new" class="btn-primary">
+        <i class="fas fa-plus"></i> Add New Project
+      </a>
+    </div> -->
+  </div>
+</section>
+<%- include('partials/footer') %>
