@@ -1,4 +1,6 @@
 <%- include('partials/header') %>
+
+<!-- Research Page -->
 <section class="research-page">
   <div class="container">
     <h1>My Research</h1>
@@ -6,7 +8,10 @@
       <% researchEntries.forEach(research => { %>
         <div class="research-card">
           <div class="pdf-cover">
-            <% if (research.thumbnailUrl) { %>
+            <% if (research.thumbnailFileId) { %>
+              <!-- GridFS thumbnail takes priority -->
+              <img src="/files/<%= research.thumbnailFileId %>" alt="<%= research.title %> Preview" class="pdf-thumbnail">
+            <% } else if (research.thumbnailUrl) { %>
               <img src="/<%= research.thumbnailUrl %>" alt="<%= research.title %> Preview" class="pdf-thumbnail">
             <% } else { %>
               <div class="pdf-placeholder">
@@ -15,24 +20,33 @@
               </div>
             <% } %>
           </div>
+
           <h3 class="research-title"><%= research.title %></h3>
           <p class="research-description"><%= research.description %></p>
+
           <div class="research-links">
-            <a href="/<%= research.researchPdf %>" target="_blank" class="btn-link">
-              <i class="fas fa-download"></i> Download PDF
-            </a>
-            <a href="/<%= research.researchPdf %>" target="_blank" class="btn-link btn-view">
-              <i class="fas fa-eye"></i> View
-            </a>
+            <% if (research.pdfFileId) { %>
+              <!-- GridFS PDF (priority) -->
+              <a href="/research/pdf/<%= research.pdfFileId %>?dl=1" class="btn-link">
+                <i class="fas fa-download"></i> Download PDF
+              </a>
+              <a href="/research/pdf/<%= research.pdfFileId %>" target="_blank" class="btn-view">
+                <i class="fas fa-eye"></i> View
+              </a>
+            <% } else if (research.researchPdf) { %>
+              <!-- Legacy/local file fallback -->
+              <a href="/<%= research.researchPdf %>" target="_blank" class="btn-link">
+                <i class="fas fa-download"></i> Download PDF
+              </a>
+              <a href="/<%= research.researchPdf %>" target="_blank" class="btn-view">
+                <i class="fas fa-eye"></i> View
+              </a>
+            <% } %>
           </div>
         </div>
       <% }) %>
     </div>
-    <!-- <div class="add-research-button">
-      <a href="/myresearch/new" class="btn-primary">
-        <i class="fas fa-plus"></i> Add New Research
-      </a>
-    </div> -->
   </div>
 </section>
+
 <%- include('partials/footer') %>
