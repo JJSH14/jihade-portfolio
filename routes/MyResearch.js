@@ -29,10 +29,6 @@ router.get('/new', (req, res) => {
 // Helper function to generate PDF thumbnail using PDF.js (browser-based approach)
 async function generatePdfThumbnailBuffer(pdfBuffer) {
   try {
-    // For server-side PDF processing, you can use pdf-poppler or pdf2pic
-    // For now, we'll create a simple placeholder
-    // You can enhance this later with actual PDF processing
-    
     // Create a simple PDF icon placeholder using Sharp
     const thumbnailBuffer = await sharp({
       create: {
@@ -196,6 +192,14 @@ router.post('/', async (req, res) => {
 router.get('/pdf/:fileId', async (req, res) => {
   try {
     const researchBucket = getResearchBucket();
+    
+    if (!researchBucket) {
+      return res.status(500).render('error', {
+        title: 'Server Error',
+        message: 'GridFS not initialized.'
+      });
+    }
+
     const fileId = new mongoose.Types.ObjectId(req.params.fileId);
     
     // Check if file exists
@@ -264,6 +268,11 @@ router.get('/pdf/:fileId', async (req, res) => {
 router.get('/thumbnail/:fileId', async (req, res) => {
   try {
     const researchBucket = getResearchBucket();
+    
+    if (!researchBucket) {
+      return res.status(500).send('GridFS not initialized');
+    }
+
     const fileId = new mongoose.Types.ObjectId(req.params.fileId);
     
     // Check if file exists
@@ -301,6 +310,10 @@ router.delete('/:researchId', async (req, res) => {
     }
     
     const researchBucket = getResearchBucket();
+    
+    if (!researchBucket) {
+      return res.status(500).json({ error: 'GridFS not initialized' });
+    }
     
     // Delete PDF file
     if (research.pdfFileId) {
